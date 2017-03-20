@@ -22,7 +22,7 @@ from products import views as product_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', views.get_index),
+    url(r'^$', views.get_index, name='index'),
     url(r'^pages/', include('django.contrib.flatpages.urls')),
     url(r'^a-very-hard-to-guess-url/', include(paypal_urls)),
     url(r'^paypal-return', paypal_views.paypal_return),
