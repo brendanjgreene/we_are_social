@@ -15,17 +15,19 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from hello import views
+from hello import views as hello_views
 from paypal.standard.ipn import urls as paypal_urls
 from paypal_store import views as paypal_views
 from products import views as product_views
+from accounts import views as accounts_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', views.get_index, name='index'),
+    url(r'^$', hello_views.get_index, name='index'),
     url(r'^pages/', include('django.contrib.flatpages.urls')),
     url(r'^a-very-hard-to-guess-url/', include(paypal_urls)),
     url(r'^paypal-return', paypal_views.paypal_return),
     url(r'^paypal-cancel', paypal_views.paypal_cancel),
-    url(r'^products/$', product_views.all_products)
+    url(r'^products/$', product_views.all_products),
+    url(r'^register/$', accounts_views.register, name='register'),
 ]
