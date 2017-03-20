@@ -29,6 +29,12 @@ ALLOWED_HOSTS = []
 
 SITE_ID = 3
 
+# PayPal Settings
+SITE_URL = 'http://127.0.0.1:8000'
+PAYPAL_NOTIFY_URL = 'http://127.0.0.1/a-very-hard-to-guess-url/'
+PAYPAL_RECIEVER_EMAIL = 'brendanjgreene-merchant2@gmail.com'
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -40,7 +46,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django.contrib.flatpages',
-    'hello'
+    'hello',
+    'paypal.standard.ipn',
+    'paypal_store',
+    'products',
+    'magazines',
 ]
 
 MIDDLEWARE = [
