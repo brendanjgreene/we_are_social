@@ -19,6 +19,7 @@ from hello import views as hello_views
 from paypal.standard.ipn import urls as paypal_urls
 from paypal_store import views as paypal_views
 from products import views as product_views
+from magazines import views as magazine_views
 from accounts import views as accounts_views
 
 urlpatterns = [
@@ -29,7 +30,9 @@ urlpatterns = [
     url(r'^paypal-return', paypal_views.paypal_return),
     url(r'^paypal-cancel', paypal_views.paypal_cancel),
     url(r'^products/$', product_views.all_products),
+    url(r'^magazines/$', magazine_views.all_magazines),
     url(r'^register/$', accounts_views.register, name='register'),
     url(r'^profile/$', accounts_views.profile, name='profile'),
     url(r'^login/$', accounts_views.login, name='login'),
+    url(r'^logout/$', accounts_views.logout, name='logout'),
 ]

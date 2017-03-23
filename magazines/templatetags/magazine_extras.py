@@ -1,9 +1,11 @@
 import uuid
 from django import template
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 from paypal.standard.forms import PayPalPaymentsForm
 
 register = template.Library()
+
 
 
 def paypal_form_for(magazine, user):
@@ -12,7 +14,7 @@ def paypal_form_for(magazine, user):
         html = "Subscribed!"
     else:
         paypal_dict = {
-            "business": settings.PAYPAL_RECEIVER_EMAIL,
+            "business": settings.PAYPAL_RECIEVER_EMAIL,
             "currency_code": "USD",
             "cmd": "_xclick-subscriptions",
             "a3": magazine.price,
