@@ -31,7 +31,7 @@ def paypal_form_for(magazine, user):
         }
 
         if settings.DEBUG:
-            html = PayPalPaymentsForm(initial=paypal_dict, button_type='subscribe').sandbox()
+            html = PayPalPaymentsForm(initial=paypal_dict, button_type='subscribe').render()
         else:
             html = PayPalPaymentsForm(initial=paypal_dict, button_type='subscribe').render()
 

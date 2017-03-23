@@ -31,10 +31,10 @@ SITE_ID = 3
 
 # PayPal Settings
 SITE_URL = 'http://127.0.0.1:8000'
-PAYPAL_NOTIFY_URL = 'http://3186a744.ngrok.io/a-very-hard-to-guess-url/'
+PAYPAL_NOTIFY_URL = 'http://954e515b.ngrok.io/a-very-hard-to-guess-url/'
 PAYPAL_RECEIVER_EMAIL = 'brendanjgreene-merchant2@gmail.com'
 
-ALLOWED_HOSTS = ['127.0.0.1', 'http://3186a744.ngrok.io']
+ALLOWED_HOSTS = ['127.0.0.1', '954e515b.ngrok.io']
 
 # Application definition
 
