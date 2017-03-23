@@ -27,15 +27,14 @@ SECRET_KEY = '_wl=@jcebbd^&02$19)-zhvk9izl!qo!plii1+0gy8!r@v&9qz'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
 SITE_ID = 3
 
 # PayPal Settings
 SITE_URL = 'http://127.0.0.1:8000'
-PAYPAL_NOTIFY_URL = 'http://127.0.0.1/a-very-hard-to-guess-url/'
-PAYPAL_RECIEVER_EMAIL = 'brendanjgreene-merchant2@gmail.com'
+PAYPAL_NOTIFY_URL = 'http://3186a744.ngrok.io/a-very-hard-to-guess-url/'
+PAYPAL_RECEIVER_EMAIL = 'brendanjgreene-merchant2@gmail.com'
 
+ALLOWED_HOSTS = ['127.0.0.1', 'http://3186a744.ngrok.io']
 
 # Application definition
 

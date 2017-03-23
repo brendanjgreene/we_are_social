@@ -14,7 +14,7 @@ class Product(models.Model):
     @property
     def paypal_form(self):
         paypal_dict = {
-            "business": settings.PAYPAL_RECIEVER_EMAIL,
+            "business": settings.PAYPAL_RECEIVER_EMAIL,
             "amount": self.price,
             "currency": "USD",
             "item_name": self.name,

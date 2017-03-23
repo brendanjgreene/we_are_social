@@ -14,7 +14,7 @@ def paypal_form_for(magazine, user):
         html = "Subscribed!"
     else:
         paypal_dict = {
-            "business": settings.PAYPAL_RECIEVER_EMAIL,
+            "business": settings.PAYPAL_RECEIVER_EMAIL,
             "currency_code": "USD",
             "cmd": "_xclick-subscriptions",
             "a3": magazine.price,
