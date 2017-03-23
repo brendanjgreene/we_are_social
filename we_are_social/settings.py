@@ -53,8 +53,8 @@ INSTALLED_APPS = [
     'paypal.standard.ipn',
     'paypal_store',
     'products',
-    'magazines',
     'django_forms_bootstrap',
+    'magazines',
 ]
 
 MIDDLEWARE = [
