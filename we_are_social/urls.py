@@ -43,6 +43,7 @@ urlpatterns = [
     url(r'^login/$', accounts_views.login, name='login'),
     url(r'^logout/$', accounts_views.logout, name='logout'),
     url(r'^blog/', include('reusable_blog.urls')),
+    url(r'^post/new/(?P<thread_id>\d+)/$', forum_views.new_post, name='new_post'),
 ]
 
 if settings.DEBUG:
