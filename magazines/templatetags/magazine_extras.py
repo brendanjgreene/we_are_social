@@ -1,11 +1,9 @@
 import uuid
 from django import template
 from django.conf import settings
-from django.contrib.auth.decorators import login_required
 from paypal.standard.forms import PayPalPaymentsForm
 
 register = template.Library()
-
 
 
 def paypal_form_for(magazine, user):
@@ -19,7 +17,7 @@ def paypal_form_for(magazine, user):
             "cmd": "_xclick-subscriptions",
             "a3": magazine.price,
             "p3": 1,
-            "t3": "M", # M = monthly
+            "t3": "M",   # M = monthly
             "src": 1,
             "sra": 1,
             "item_name": magazine.name,
@@ -31,7 +29,7 @@ def paypal_form_for(magazine, user):
         }
 
         if settings.DEBUG:
-            html = PayPalPaymentsForm(initial=paypal_dict, button_type='subscribe').render()
+            html = PayPalPaymentsForm(initial=paypal_dict, button_type='subscribe').sandbox()
         else:
             html = PayPalPaymentsForm(initial=paypal_dict, button_type='subscribe').render()
 

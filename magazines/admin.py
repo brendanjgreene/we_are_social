@@ -4,4 +4,3 @@ from .models import Purchase
 
 admin.site.register(Magazine)
 admin.site.register(Purchase)
-

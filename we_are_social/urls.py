@@ -21,6 +21,8 @@ from paypal_store import views as paypal_views
 from products import views as product_views
 from magazines import views as magazine_views
 from accounts import views as accounts_views
+from django.conf import settings
+from django.conf.urls import include, url
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -35,4 +37,11 @@ urlpatterns = [
     url(r'^profile/$', accounts_views.profile, name='profile'),
     url(r'^login/$', accounts_views.login, name='login'),
     url(r'^logout/$', accounts_views.logout, name='logout'),
+    url(r'^blog/', include('reusable_blog.urls')),
 ]
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns += [
+        url(r'^__debug__/', include(debug_toolbar.urls))
+    ]

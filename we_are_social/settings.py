@@ -31,10 +31,10 @@ SITE_ID = 3
 
 # PayPal Settings
 SITE_URL = 'http://127.0.0.1:8000'
-PAYPAL_NOTIFY_URL = 'http://954e515b.ngrok.io/a-very-hard-to-guess-url/'
+PAYPAL_NOTIFY_URL = 'http://21931ff5.ngrok.io/a-very-hard-to-guess-url/'
 PAYPAL_RECEIVER_EMAIL = 'brendanjgreene-merchant2@gmail.com'
 
-ALLOWED_HOSTS = ['127.0.0.1', '954e515b.ngrok.io']
+ALLOWED_HOSTS = ['127.0.0.1', '21931ff5.ngrok.io']
 
 # Application definition
 
@@ -54,8 +54,14 @@ INSTALLED_APPS = [
     'products',
     'django_forms_bootstrap',
     'magazines',
+    'reusable_blog',
+    'disqus',
+    'debug_toolbar',
+    'tinymce',
+    'emoticons',
 ]
 
+INTERNAL_IPS = ('127.0.0.1',)
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -66,6 +72,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 
@@ -144,3 +151,11 @@ AUTHENTICATION_BACKENDS = (
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = ''
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),  # static directory at the project level
+)
+
+# tinymce settings
+TINYMCE_JS_ROOT = os.path.join(BASE_DIR, "static", 'js', 'tinymce', 'tinymce.min.js')
