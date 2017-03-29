@@ -44,6 +44,8 @@ urlpatterns = [
     url(r'^logout/$', accounts_views.logout, name='logout'),
     url(r'^blog/', include('reusable_blog.urls')),
     url(r'^post/new/(?P<thread_id>\d+)/$', forum_views.new_post, name='new_post'),
+    url(r'^post/edit/(?P<thread_id>\d+)/(?P<post_id>\d+)/$', forum_views.edit_post, name='edit_post'),
+    url(r'^post/delete/(?P<thread_id>\d+)/(?P<post_id>\d+)/$', forum_views.delete_post, name='delete_post'),
 ]
 
 if settings.DEBUG:

@@ -10,6 +10,7 @@ def get_total_subject_posts(subject):
     total_posts = 0
     for thread in subject.threads.all():
         total_posts += thread.posts.count()
+
     return total_posts
 
 
@@ -20,5 +21,6 @@ def started_time(created_at):
 
 @register.simple_tag
 def last_posted_user_name(thread):
-    posts = thread.posts.all().order_by('-created_at')
-    return posts[posts.count()-1].user.username
+    posts = thread.posts.all().order_by('created_at')
+    return posts.first().user.username
+
