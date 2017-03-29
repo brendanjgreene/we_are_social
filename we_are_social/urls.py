@@ -23,8 +23,13 @@ from magazines import views as magazine_views
 from accounts import views as accounts_views
 from django.conf import settings
 from django.conf.urls import include, url
+from threads import views as forum_views
 
 urlpatterns = [
+    url(r'^forum/$', forum_views.forum),
+    url(r'^threads/(?P<subject_id>\d+)/$', forum_views.threads, name='threads'),
+    url(r'^new_thread/(?P<subject_id>\d+)/$',  forum_views.new_thread, name='new_thread'),
+    url(r'^thread/(?P<thread_id>\d+)/$', forum_views.thread, name='thread'),
     url(r'^admin/', admin.site.urls),
     url(r'^$', hello_views.get_index, name='index'),
     url(r'^pages/', include('django.contrib.flatpages.urls')),
