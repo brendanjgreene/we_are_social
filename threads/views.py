@@ -6,13 +6,8 @@ from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.template.context_processors import csrf
 from .forms import ThreadForm, PostForm
-
-
-def thread(request, thread_id):
-    thread_ = get_object_or_404(Thread, pk=thread_id)
-    args = {'thread': thread_}
-    args.update(csrf(request))
-    return render(request, 'forum/thread.html', args)
+from django.forms import formset_factory
+from polls.forms import PollSubjectForm, PollForm
 
 
 def forum(request):
@@ -27,10 +22,15 @@ def threads(request, subject_id):
 @login_required
 def new_thread(request, subject_id):
     subject = get_object_or_404(Subject, pk=subject_id)
+    poll_subject_formset = formset_factory(PollSubjectForm, extra=3)
     if request.method == "POST":
         thread_form = ThreadForm(request.POST)
         post_form = PostForm(request.POST)
-        if thread_form.is_valid() and post_form.is_valid():
+        poll_form = PollForm(request.POST)
+        poll_subject_formset = poll_subject_formset(request.POST)
+        if thread_form.is_valid() and post_form.is_valid()\
+                and poll_form.is_valid()\
+                and poll_subject_formset.is_valid():
             thread = thread_form.save(False)
             thread.subject = subject
             thread.user = request.user
@@ -41,21 +41,42 @@ def new_thread(request, subject_id):
             post.thread = thread
             post.save()
 
+            poll = poll_form.save(False)
+            poll.thread = thread
+            poll.save()
+
+            for subject_form in poll_subject_formset:
+                subject = subject_form.save(False)
+                subject.poll = poll
+                subject.save()
+
             messages.success(request, "You Have created a new thread!")
 
             return redirect(reverse('thread', args={thread.pk}))
     else:
         thread_form = ThreadForm()
         post_form = PostForm(request.POST)
+        poll_form = PollForm()
+        poll_subject_formset = poll_subject_formset()
 
     args = {
         'thread_form': thread_form,
         'post_form': post_form,
         'subject': subject,
+        'poll_form': poll_form,
+        'poll_subject_formset': poll_subject_formset,
     }
+
     args.update(csrf(request))
 
     return render(request, 'forum/thread_form.html', args)
+
+
+def thread(request, thread_id):
+    thread_ = get_object_or_404(Thread, pk=thread_id)
+    args = {'thread': thread_}
+    args.update(csrf(request))
+    return render(request, 'forum/thread.html', args)
 
 
 @login_required
