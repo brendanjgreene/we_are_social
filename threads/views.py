@@ -87,7 +87,7 @@ def new_post(request, thread_id):
         form = PostForm(request.POST)
         if form.is_valid():
             post = form.save(False)
-            post.thread = thread()
+            post.thread = thread
             post.user = request.user
             post.save()
 
